@@ -39,7 +39,7 @@ export default function ListView() {
                   href={meme.imgUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-500 hover:underline"
+                  className="text-blue-500 hover:underline"
                 >
                   {meme.name}
                 </a>
