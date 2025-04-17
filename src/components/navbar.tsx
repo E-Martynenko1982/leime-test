@@ -10,37 +10,34 @@ export const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <HeroUINavbar>
-      <div className="hidden lg:flex gap-4 justify-start ml-2">
-        <NavbarItem></NavbarItem>
-        <NavbarItem>
-          <Link
-            className={clsx(
-              linkStyles({ color: isActive('/') ? 'primary' : 'foreground', underline: 'hover' }),
-              'data-[active=true]:text-primary data-[active=true]:font-medium',
-            )}
-            color="foreground"
-            href="/"
-          >
-            Table
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link
-            className={clsx(
-              linkStyles({
-                color: isActive('/list') ? 'primary' : 'foreground',
-                underline: 'hover',
-              }),
-              'data-[active=true]:text-primary data-[active=true]:font-medium',
-            )}
-            color="foreground"
-            href="/list"
-          >
-            List
-          </Link>
-        </NavbarItem>
-      </div>
+    <HeroUINavbar className="flex gap-2 justify-left ml-2">
+      <NavbarItem>
+        <Link
+          className={clsx(
+            linkStyles({ color: isActive('/') ? 'primary' : 'foreground', underline: 'hover' }),
+            'data-[active=true]:text-primary data-[active=true]:font-medium',
+          )}
+          color="foreground"
+          href="/"
+        >
+          Table
+        </Link>
+      </NavbarItem>
+      <NavbarItem>
+        <Link
+          className={clsx(
+            linkStyles({
+              color: isActive('/list') ? 'primary' : 'foreground',
+              underline: 'hover',
+            }),
+            'data-[active=true]:text-primary data-[active=true]:font-medium',
+          )}
+          color="foreground"
+          href="/list"
+        >
+          List
+        </Link>
+      </NavbarItem>
     </HeroUINavbar>
   );
 };
