@@ -20,6 +20,7 @@ export default function TableView() {
   const [editForm, setEditForm] = useState({
     name: '',
     imgUrl: '',
+    likes: 0
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -56,6 +57,7 @@ export default function TableView() {
     setEditForm({
       name: meme.name,
       imgUrl: meme.imgUrl,
+      likes: meme.likes,
     });
     onOpen();
   };
@@ -65,14 +67,15 @@ export default function TableView() {
     if (!selectedMeme) return;
 
     try {
-      const randomLikes = generateRandomLikes();
-      const updatedMeme = await api.updateMeme(selectedMeme.id, {
-        ...editForm,
-        likes: randomLikes,
-      });
+      const updatedMemePayload = {
+        name: editForm.name,
+        imgUrl: editForm.imgUrl,
+        likes: editForm.likes,
+      };
+      const updatedMeme = await api.updateMeme(selectedMeme.id, updatedMemePayload);
       setMemes(
         memes.map(meme =>
-          meme.id === selectedMeme.id ? { ...updatedMeme, likes: randomLikes } : meme,
+          meme.id === selectedMeme.id ? { ...meme, ...updatedMeme } : meme,
         ),
       );
       onClose();

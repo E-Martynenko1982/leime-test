@@ -8,8 +8,8 @@ interface EditMemeModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedMeme: Meme | null;
-  editForm: { name: string; imgUrl: string };
-  setEditForm: React.Dispatch<React.SetStateAction<{ name: string; imgUrl: string }>>;
+  editForm: { name: string; imgUrl: string; likes: number };
+  setEditForm: React.Dispatch<React.SetStateAction<{ name: string; imgUrl: string; likes: number }>>;
   handleSubmit: (e: React.FormEvent) => void;
 }
 
@@ -63,10 +63,10 @@ const EditMemeModal: React.FC<EditMemeModalProps> = ({
                 <Input
                   id="likes"
                   type="number"
-                  value={String(selectedMeme?.likes || 0)}
-                  readOnly
-                  disabled
-                  className="mt-1 bg-gray-100"
+                  value={String(editForm.likes)}
+                  onChange={(e) => setEditForm({ ...editForm, likes: Number(e.target.value) })}
+                  required
+                  className="mt-1"
                 />
               </div>
               <div>
